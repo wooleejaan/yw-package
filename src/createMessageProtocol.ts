@@ -1,20 +1,22 @@
 import { z } from "zod";
 import { EventConfigToDiscriminatedUnion } from "./types";
 
-// declare const createMessageBus: any;
-
 export const createMessageProtocol = <
-	T extends Record<string, z.ZodRawShape>,
-	EventsAsDiscoUnion = EventConfigToDiscriminatedUnion<T>
+  T extends Record<string, z.ZodRawShape>,
+  EventsAsDiscoUnion extends { type: string } = EventConfigToDiscriminatedUnion<T>
 >(opts: {
-	events: T;
+  events: T;
 }) => {
-	return {
-		createSender: (func: (event: EventsAsDiscoUnion) => void) => {
-			return func;
-		},
-		createReceiver: (func: (event: EventsAsDiscoUnion) => void) => {
-			return func;
-		},
-	};
+  return {
+    createHandler: (sender: (event: EventsAsDiscoUnion) => void) => {
+      return (event: EventsAsDiscoUnion) => {
+        const eventSchema = z.object({
+          ...opts.events[event.type],
+          type: z.literal(event.type),
+        });
+
+        sender(eventSchema.parse(event) as EventsAsDiscoUnion);
+      };
+    },
+  };
 };
