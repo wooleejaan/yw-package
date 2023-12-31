@@ -1,5 +1,11 @@
 # ywpackage
 
+## 0.1.0
+
+### Minor Changes
+
+- 0173e55: Added createMessageProtocol API
+
 ## 0.0.3
 
 ### Patch Changes
