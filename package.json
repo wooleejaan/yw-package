@@ -1,6 +1,6 @@
 {
   "name": "ywpackage",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "private": false,
   "main": "./dist/index.js",
@@ -15,7 +15,7 @@
     "release": "pnpm run lint && pnpm run test && pnpm run build && changeset publish"
   },
   "author": "yongwoo",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@changesets/cli": "^2.27.1",
     "@types/node": "^18.14.0",
