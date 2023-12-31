@@ -1,5 +1,11 @@
 # ywpackage
 
+## 0.1.1
+
+### Patch Changes
+
+- 2040f18: Implemented functionality with zod
+
 ## 0.1.0
 
 ### Minor Changes
